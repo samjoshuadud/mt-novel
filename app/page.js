@@ -25,6 +25,7 @@ export default function Home() {
       });
 
       const data = await response.json();
+      console.log('API Response:', data.refinedText);
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to refine text');
@@ -110,8 +111,9 @@ export default function Home() {
               </div>
             </div>
             <div className="flex-1 relative min-h-0">
-              <div className="absolute inset-0 p-4 rounded-lg border border-gray-300 
-                            bg-white shadow-sm overflow-auto text-black">
+              <pre className="absolute inset-0 p-4 rounded-lg border border-gray-300 
+                              bg-white shadow-sm overflow-auto text-black whitespace-pre-line
+                              font-sans var(--font-geist-sans) leading-relaxed">
                 {error ? (
                   <div className="text-red-500">{error}</div>
                 ) : outputText ? (
@@ -121,7 +123,7 @@ export default function Home() {
                     Refined translation will appear here...
                   </span>
                 )}
-              </div>
+              </pre>
               {isRefining && (
                 <div className="absolute inset-0 bg-white/50 flex items-center justify-center rounded-lg">
                   <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-md">
